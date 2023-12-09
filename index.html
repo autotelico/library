@@ -12,7 +12,24 @@
 </head>
 <body>
     <h1>Your Library</h1>
-    div.container
+    <div class="container border border-primary d-flex" id="main-container">
+        <div class="container border border-secondary m-2 p-3">
+            <h2 class="card-title"></h2>
+            <p class="card-description"></p>
+        </div>
+        <div class="container border border-secondary m-2"></div>
+        <div class="container border border-secondary m-2"></div>
+    </div>
+    <div class="container">
+        <ul>
+            <li><label for="book-author">Author: <input type="text" name="book" id="book-author"></label></li>
+            <li><label for="book-title">Title: <input type="text" name="book" id="book-title"></label></li>
+            <li><label for="book-page-count">Pages: <input type="text" name="book" id="book-page-count"></label></li>
+            <li><label for="book-has-read">Has read? <input type="text" name="book" id="book-has-read"></label></li>
+        </ul>
+    </div>
+
+ 
         <!-- <input type="text" id="users-book">
         <button type="button" id="add-button">Add</button>
         <button type="button" id="reset-button">Reset</button> -->
