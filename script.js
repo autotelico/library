@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.author = author;
         this.title = title;
         this.pages = pages;
-        this.hasRead = Boolean(hasRead);
+        this.hasRead = hasRead;
     }
 
     const myLibrary = [];
@@ -31,42 +31,42 @@ document.addEventListener("DOMContentLoaded", () => {
     function addBookToLibrary(book) {
         myLibrary.push(book);
         console.log(myLibrary);
-        book.index = myLibrary.indexOf(book);
-        displayBooks(book.index);
+        displayBooks();
     }
 
-    function displayBooks(bookIndex) { // fancier displayInfo() sibling
+    function displayBooks() { // fancier displayInfo() sibling
 
         clearOldCards();
 
         for (const book of myLibrary) {
 
             const newCard = document.createElement('div');
-            newCard.classList.add('card', 'container', 'border', 'border-secondary', 'bg-warning', 'm-2', 'p-3');
+            newCard.classList.add('card', 'container', 'border', 'border-secondary', 'bg-warning', 'm-2', 'p-3', 'text-center');
 
             mainContainer.appendChild(newCard);
 
             const newAuthor = document.createElement('p');
             newCard.appendChild(newAuthor);
-            newAuthor.textContent = book.author;
+            newAuthor.textContent = `Author: ${book.author}`;
 
             const newTitle = document.createElement('p');
             newCard.appendChild(newTitle);
-            newTitle.textContent = book.title;
+            newTitle.textContent = `Title: ${book.title}`;
 
             const newPages = document.createElement('p');
             newCard.appendChild(newPages);
-            newPages.textContent = book.pages;
+            newPages.textContent = `Pages: ${book.pages}`;
 
             const newReadStatus = document.createElement('p');
             newCard.appendChild(newReadStatus);
-            newReadStatus.textContent = book.readStatus;
+            newReadStatus.textContent = `Read? ${book.hasRead}`;
 
             const newButton = document.createElement('button');
             newButton.classList.add('delete-btn', 'py-1', 'px-3', 'border', 'border-primary');
             newButton.textContent = 'Delete Book';
             newCard.appendChild(newButton);
-            newCard.setAttribute('id', bookIndex);
+            newCard.setAttribute('id', book.title);
+            console.log('Card id is ' + newCard.id);
 
             newButton.addEventListener('click', (e) => {
                 deleteCard(e);
@@ -79,24 +79,20 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const book of myLibrary) {
             let targetedCard = event.target.parentNode;
 
-            console.log('Book index is ' + myLibrary.indexOf(book)); // number
-            console.log('targetedCard ID is: ' + targetedCard.id); // string
+            console.log(`CARD ID: ${targetedCard.id}`);
+            console.log(`BOOK TITLE: ${book.title}`);
 
-            if (book.index == Number(targetedCard.id - 1)) {
+            if (targetedCard.id === book.title) {
+                myLibrary.splice(myLibrary.indexOf(book), 1);
                 targetedCard.remove();
-                myLibrary.splice(book.index, 1);
-                
-                myLibrary.forEach((book, index) => book.index = index);
-                
                 console.log(myLibrary);
             } else {
-                console.log('index not found');
+                console.log('book not found');
             }
-
         }
     }
 
-   
+
 
     function clearOldCards() {
         const cardList = document.querySelectorAll('.card');
@@ -110,19 +106,30 @@ document.addEventListener("DOMContentLoaded", () => {
         bookAuthor.value = '';
         bookTitle.value = '';
         bookPages.value = '';
-        bookReadStatus.value = '';
+        bookReadStatus.checked = false;
     }
+
+    function verifyReadStatus() {
+        let read;
+        if (bookReadStatus.checked) {
+            read = 'Yes';
+        } else {
+            read = 'No';
+        }
+        return read;
+    };
 
     form.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && e.target.value !== '') {
-            const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value)
+            const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, verifyReadStatus());
+            console.log('Verified read status: ' + verifyReadStatus());
             addBookToLibrary(createdBook);
             clearInputFields();
         }
     })
-
+    
     addButton.addEventListener('click', () => {
-        const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value)
+        const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, verifyReadStatus());
         addBookToLibrary(createdBook);
         clearInputFields();
     })
