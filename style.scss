@@ -14,7 +14,7 @@ form {
     width: calc($input-width + 60px);
 }
 
-input {
+input:not([type='checkbox']) {
     width: $input-width;
 }
 

@@ -68,6 +68,21 @@ document.addEventListener("DOMContentLoaded", () => {
             newCard.setAttribute('id', book.title);
             console.log('Card id is ' + newCard.id);
 
+            const newInput = document.createElement('input');
+            newInput.type = 'checkbox';
+            const newSpan = document.createElement('span');
+            newSpan.textContent = 'Change read status: '
+            newSpan.appendChild(newInput);
+            newReadStatus.after(newSpan);
+
+            newInput.addEventListener('change', () => {
+                if (newInput.checked) {
+                    newReadStatus.textContent = `Read? Yes`;
+                } else {
+                    newReadStatus.textContent = `Read? No`;
+                }
+            })
+
             newButton.addEventListener('click', (e) => {
                 deleteCard(e);
             })
