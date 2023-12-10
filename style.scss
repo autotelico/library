@@ -2,6 +2,14 @@ body {
     background-color: aquamarine;
 }
 
+#main-container {
+    height: 300px;
+}
+
+.card .delete-btn {
+    width: max-content;
+}
+
 ul {
     width: min-content;
     list-style-type: none;

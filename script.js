@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const addButton = document.querySelector('#add-button');
     const resetButton = document.querySelector('#reset-button');
 
-
-    cardAuthor.textContent = bookAuthor.value;
-
-
     function Book(author, title, pages, hasRead) {
         this.author = author;
         this.title = title;
@@ -29,23 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
         this.hasRead = Boolean(hasRead);
     }
 
-    const theHobbit = new Book('JRR Tolkien', 'The Hobbit', 300, true);
-    const harryPotter = new Book('JK Rowling', 'Harry Potter', 10, false);
-    const gameOfThrones = new Book('George RR Martin', 'Game of Thrones', 1000, true);
-
     const myLibrary = [];
     console.log(myLibrary);
 
-    function addBookToLibrary(author, title, pages, readStatus) {
-        let builtBook = {
-            author: author,
-            title: title,
-            pages: pages,
-            readStatus: Boolean(readStatus)
-        };
-        myLibrary.push(builtBook);
+    function addBookToLibrary(book) {
+        myLibrary.push(book);
         console.log(myLibrary);
-        // displayInfo();
         displayBooks();
     }
 
@@ -57,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const newCard = document.createElement('div');
             newCard.classList.add('card', 'container', 'border', 'border-secondary', 'bg-warning', 'm-2', 'p-3');
+
             mainContainer.appendChild(newCard);
 
             const newAuthor = document.createElement('p');
@@ -74,7 +60,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const newReadStatus = document.createElement('p');
             newCard.appendChild(newReadStatus);
             newReadStatus.textContent = book.readStatus;
+
+            const newButton = document.createElement('button');
+            newButton.classList.add('delete-btn');
+            newButton.textContent = 'Delete Book';
+            newCard.appendChild(newButton);
+
+            newButton.addEventListener('click', (e) => {
+                deleteCard(e);
+            })
         }
+    }
+
+    function deleteCard(event) {
+        event.target.parentNode.remove();
+        myLibrary.shift();
+        console.log(myLibrary);
     }
 
     function clearOldCards() {
@@ -83,18 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const card of cardList) {
             card.remove();
         }
-
     }
-
-    // function displayInfo() {
-
-    //     for (const item of myLibrary) {
-    //         cardAuthor.textContent = item.author;
-    //         cardTitle.textContent = item.title;
-    //         cardPages.textContent = item.pages;
-    //         cardReadStatus.textContent = item.readStatus;
-    //     }
-    // }
 
     function clearInputFields() {
         bookAuthor.value = '';
@@ -104,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     addButton.addEventListener('click', () => {
-        addBookToLibrary(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value);
+        const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value)
+        addBookToLibrary(createdBook);
         clearInputFields();
     })
 
