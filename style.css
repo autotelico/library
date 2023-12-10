@@ -1,9 +1,19 @@
 body {
-  background-color: aquamarine;
+  background-image: url(https://images-cdn.welcomesoftware.com/Zz0wZGI4ZTI2NjhlNGQxMWViODVlN2QzNTI0ZjhkZTQyOA==);
+  background-size: cover;
 }
 
 #main-container {
   height: 300px;
+}
+
+form {
+  background-color: violet;
+  width: 310px;
+}
+
+input {
+  width: 250px;
 }
 
 .fadein {

@@ -1,9 +1,21 @@
+$input-width: 250px;
+
 body {
-    background-color: aquamarine;
+    background-image: url(https://images-cdn.welcomesoftware.com/Zz0wZGI4ZTI2NjhlNGQxMWViODVlN2QzNTI0ZjhkZTQyOA==);
+    background-size: cover;
 }
 
 #main-container {
     height: 300px;
+}
+
+form {
+    background-color: violet;
+    width: calc($input-width + 60px);
+}
+
+input {
+    width: $input-width;
 }
 
 .fadein {
