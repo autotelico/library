@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const bookReadStatus = document.querySelector('#book-has-read');
 
     const mainContainer = document.querySelector('#main-container');
+    const newBookBtn = document.querySelector('#new-book');
+    const form = document.querySelector('form');
 
     const cardAuthor = document.querySelector('.card-author');
     const cardTitle = document.querySelector('.card-title');
@@ -104,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
     addButton.addEventListener('click', () => {
         addBookToLibrary(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value);
         clearInputFields();
+    })
+
+    newBookBtn.addEventListener('click', () => {
+        form.classList.replace('d-none', 'd-block');
     })
 
 
