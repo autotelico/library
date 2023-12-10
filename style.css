@@ -11,8 +11,7 @@ body {
 }
 
 .card .delete-btn {
-  width: -moz-max-content;
-  width: max-content;
+  width: 100%;
 }
 
 ul {

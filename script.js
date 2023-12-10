@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newReadStatus.textContent = book.readStatus;
 
             const newButton = document.createElement('button');
-            newButton.classList.add('delete-btn', 'py-1', 'px-3');
+            newButton.classList.add('delete-btn', 'py-1', 'px-3', 'border', 'border-primary');
             newButton.textContent = 'Delete Book';
             newCard.appendChild(newButton);
             newCard.setAttribute('id', bookIndex);
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('Book index is ' + myLibrary.indexOf(book)); // number
             console.log('targetedCard ID is: ' + targetedCard.id); // string
 
-            if (book.index == Number(targetedCard.id - 1)) {
+            if (myLibrary.getIndexOf(book) == Number(targetedCard.id - 1)) {
                 targetedCard.remove();
                 myLibrary.splice(book.index, 1);
                 console.log(myLibrary);
