@@ -4,7 +4,7 @@ body {
 }
 
 #main-container {
-  height: 300px;
+  height: 100%;
 }
 
 form {
@@ -20,8 +20,13 @@ input:not([type=checkbox]) {
   animation: fadeIn 3s;
 }
 
+.card {
+  width: 200px !important;
+}
+
 .card .delete-btn {
-  width: 100%;
+  width: 100px;
+  margin: 0 auto;
 }
 
 ul {
