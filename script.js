@@ -84,9 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('Book index is ' + myLibrary.indexOf(book)); // number
             console.log('targetedCard ID is: ' + targetedCard.id); // string
 
-            if (myLibrary.getIndexOf(book) == Number(targetedCard.id - 1)) {
+            if (book.index == Number(targetedCard.id - 1)) {
                 targetedCard.remove();
                 myLibrary.splice(book.index, 1);
+                
+                myLibrary.forEach((book, index) => book.index = index);
+                
                 console.log(myLibrary);
             } else {
                 console.log('index not found');
