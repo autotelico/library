@@ -31,10 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function addBookToLibrary(book) {
         myLibrary.push(book);
         console.log(myLibrary);
-        displayBooks();
+        book.index = myLibrary.indexOf(book);
+        console.log(book.index);
+        displayBooks(book.index);
     }
 
-    function displayBooks() { // fancier displayInfo() sibling
+    function displayBooks(bookIndex) { // fancier displayInfo() sibling
 
         clearOldCards();
 
@@ -62,20 +64,35 @@ document.addEventListener("DOMContentLoaded", () => {
             newReadStatus.textContent = book.readStatus;
 
             const newButton = document.createElement('button');
-            newButton.classList.add('delete-btn');
+            newButton.classList.add('delete-btn', 'py-1', 'px-3');
             newButton.textContent = 'Delete Book';
             newCard.appendChild(newButton);
+            newCard.setAttribute('id', bookIndex);
+            console.log('Card ID is ' + newCard.id);
 
             newButton.addEventListener('click', (e) => {
                 deleteCard(e);
             })
+
         }
     }
 
     function deleteCard(event) {
-        event.target.parentNode.remove();
-        myLibrary.shift();
-        console.log(myLibrary);
+        for (const book of myLibrary) {
+            let targetedCard = event.target.parentNode;
+
+            console.log(myLibrary.indexOf(book)); // number
+            console.log(targetedCard.id); // string
+
+            if (myLibrary.indexOf(book) === Number(targetedCard.id)) {
+                targetedCard.remove();
+                myLibrary.splice(myLibrary.indexOf(book), 1);
+                console.log(myLibrary);
+            } else {
+                console.log('index not found');
+            }
+
+        }
     }
 
     function clearOldCards() {
@@ -92,6 +109,14 @@ document.addEventListener("DOMContentLoaded", () => {
         bookPages.value = '';
         bookReadStatus.value = '';
     }
+
+    form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.value !== '') {
+            const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value)
+            addBookToLibrary(createdBook);
+            clearInputFields();
+        }
+    })
 
     addButton.addEventListener('click', () => {
         const createdBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookReadStatus.value)
