@@ -6,6 +6,10 @@ body {
   height: 300px;
 }
 
+.fadein {
+  animation: fadeIn 3s;
+}
+
 .card .delete-btn {
   width: -moz-max-content;
   width: max-content;

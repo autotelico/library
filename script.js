@@ -81,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const book of myLibrary) {
             let targetedCard = event.target.parentNode;
 
-            console.log(myLibrary.indexOf(book)); // number
-            console.log(targetedCard.id); // string
+            console.log('Book index is ' + myLibrary.indexOf(book)); // number
+            console.log('targetedCard ID is: ' + targetedCard.id); // string
 
-            if (myLibrary.indexOf(book) === Number(targetedCard.id)) {
+            if (book.index == Number(targetedCard.id - 1)) {
                 targetedCard.remove();
-                myLibrary.splice(myLibrary.indexOf(book), 1);
+                myLibrary.splice(book.index, 1);
                 console.log(myLibrary);
             } else {
                 console.log('index not found');
@@ -94,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
+
+   
 
     function clearOldCards() {
         const cardList = document.querySelectorAll('.card');
@@ -127,37 +129,4 @@ document.addEventListener("DOMContentLoaded", () => {
     newBookBtn.addEventListener('click', () => {
         form.classList.replace('d-none', 'd-block');
     })
-
-
-
-
-
-    // for (const book in myLibrary) {
-    //     cardAuthor.textContent = bookAuthor.value;
-    // }
-
-    // console.log(myLibrary[0]);
-
-    // function addBook(book) {
-    //     myLibrary.push(book);
-    //     console.log(myLibrary);
-    // }
-
-
-    // usersBook.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Enter') {
-    //         addBook(usersBook.value);
-    //         usersBook.value = '';
-    //     }
-    // })
-
-
-
 })
-
-// resetButton.addEventListener('click', () => {
-//     while (myLibrary.length > 0) {
-//         myLibrary.pop();
-//         console.log(myLibrary);
-//     }
-// })   
