@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
         myLibrary.push(book);
         console.log(myLibrary);
         book.index = myLibrary.indexOf(book);
-        console.log(book.index);
         displayBooks(book.index);
     }
 
@@ -68,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
             newButton.textContent = 'Delete Book';
             newCard.appendChild(newButton);
             newCard.setAttribute('id', bookIndex);
-            console.log('Card ID is ' + newCard.id);
 
             newButton.addEventListener('click', (e) => {
                 deleteCard(e);
