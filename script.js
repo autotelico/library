@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardTitle = document.querySelector('.card-title');
     const cardPages = document.querySelector('.card-pages');
     const cardReadStatus = document.querySelector('.card-has-read');
-    // const form = document.querySelector('form');
     const addButton = document.querySelector('#add-button');
     const resetButton = document.querySelector('#reset-button');
 
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayBooks();
     }
 
-    function displayBooks() { // fancier displayInfo() sibling
+    function displayBooks() {
 
         clearOldCards();
 

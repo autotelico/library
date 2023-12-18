@@ -4,11 +4,10 @@ body {
 }
 
 #main-container {
-  height: 100%;
+  min-height: 300px;
 }
 
 form {
-  background-color: violet;
   width: 310px;
 }
 
