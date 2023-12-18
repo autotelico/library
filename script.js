@@ -17,11 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const addButton = document.querySelector('#add-button');
     const resetButton = document.querySelector('#reset-button');
 
-    function Book(author, title, pages, hasRead) {
-        this.author = author;
-        this.title = title;
-        this.pages = pages;
-        this.hasRead = hasRead;
+    class Book {
+         constructor(author, title, pages, hasRead) {
+            this.author = author;
+            this.title = title;
+            this.pages = pages;
+            this.hasRead = hasRead;
+        }
     }
 
     const myLibrary = [];
