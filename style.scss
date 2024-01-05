@@ -1,5 +1,11 @@
 $input-width: 250px;
 
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
     background-image: url(https://images-cdn.welcomesoftware.com/Zz0wZGI4ZTI2NjhlNGQxMWViODVlN2QzNTI0ZjhkZTQyOA==);
     background-size: cover;
@@ -11,6 +17,10 @@ body {
 
 form {
     width: calc($input-width + 60px);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
 }
 
 input:not([type='checkbox']) {
